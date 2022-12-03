@@ -1,0 +1,28 @@
+{
+  "schemaVersion": "2.2",
+  "description": "Create mock.txt file",
+  "parameters": {
+    "mockContent": {
+      "type": "String",
+      "default": "mock-content",
+      "description": "(Required) mock.txt file content."
+    },
+    "workingDirectory": {
+      "type": "String",
+      "default": "/home/ec2-user",
+      "description": "(Optional) The path to the working directory on your instance."
+    }
+  },
+  "mainSteps": [
+    {
+      "action": "aws:runShellScript",
+      "name": "runMainShellScript",
+      "inputs": {
+        "runCommand": [
+          "su -c 'echo \"$(date -u '\"'\"'+%Y-%m-%d %H:%M:%S'\"'\"'): Message = {{ mockContent }}\" > /home/ec2-user/mock.txt' ec2-user"
+        ],
+        "workingDirectory": "{{ workingDirectory }}"
+      }
+    }
+  ]
+}
