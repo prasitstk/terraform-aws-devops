@@ -1,3 +1,26 @@
+#################
+# IAM resources #
+#################
+
+resource "aws_iam_user" "task_user" {
+  name = "${var.sys_name}-task-user"
+  path = "/"
+}
+
+resource "aws_iam_access_key" "task_user_access_key" {
+  user = aws_iam_user.task_user.name
+}
+
+resource "aws_iam_user_policy_attachment" "task_user_ssm_policy_attachment" {
+  user       = aws_iam_user.task_user.name
+  policy_arn = "arn:aws:iam::aws:policy/AmazonSSMFullAccess"
+}
+
+resource "aws_iam_user_policy_attachment" "task_user_resourcegroup_policy_attachment" {
+  user       = aws_iam_user.task_user.name
+  policy_arn = "arn:aws:iam::aws:policy/ResourceGroupsandTagEditorReadOnlyAccess"
+}
+
 ################################
 # ECS Scheduled task resources #
 ################################
@@ -75,8 +98,8 @@ resource "aws_cloudwatch_event_target" "app_ecs_scheduled_task" {
     "name": "${var.sys_name}-app-task",
     "command": ["${var.app_command}"],
     "environment": [
-      {"name": "AWS_ACCESS_KEY_ID", "value": "${var.aws_access_key}"},
-      {"name": "AWS_SECRET_ACCESS_KEY", "value": "${var.aws_secret_key}"},
+      {"name": "AWS_ACCESS_KEY_ID", "value": "${aws_iam_access_key.task_user_access_key.id}"},
+      {"name": "AWS_SECRET_ACCESS_KEY", "value": "${aws_iam_access_key.task_user_access_key.secret}"},
       {"name": "AWS_REGION", "value": "${var.aws_region}"},
       {"name": "MOCK_CONTENT", "value": "${var.app_mock_content}"},
       {"name": "RESOURCE_GRP_NAME", "value": "${aws_resourcegroups_group.env_resourcegroup_grp.name}"}
