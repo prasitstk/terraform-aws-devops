@@ -1,4 +1,4 @@
-# ECS Fargate Scheduled Tasks to start SSM Run Command to perform its job on EC2 instances on a Resource group
+# ECS Fargate Scheduled Tasks to start SSM Run Command to perform its job on EC2 instances within a Resource group
 
 &nbsp;
 
