@@ -17,7 +17,7 @@ resource "aws_cloudwatch_event_target" "sys_sched_rule_start_stop_ec2_instance_f
   rule      = aws_cloudwatch_event_rule.sys_sched_rule.id
 
   input = jsonencode({
-    DryRun = "${lower(var.app_fn_schedule_dry_run)}",
+    DryRun = "${lower(var.app_fn_schedule_dry_run)}"
     Schedules = [{
       InstanceID = "${aws_instance.app_i.id}"
       Action = "start"
@@ -33,7 +33,7 @@ resource "aws_cloudwatch_event_target" "sys_sched_rule_start_stop_ec2_instance_f
   rule      = aws_cloudwatch_event_rule.sys_sched_rule.id
 
   input = jsonencode({
-    DryRun = "${lower(var.app_fn_schedule_dry_run)}",
+    DryRun = "${lower(var.app_fn_schedule_dry_run)}"
     Schedules = [{
       InstanceID = "${aws_instance.app_i.id}"
       Action = "stop"

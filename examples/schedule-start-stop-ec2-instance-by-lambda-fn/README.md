@@ -64,7 +64,7 @@ app_fn_stop_schedules  = ["0250", "0300"]
 
 After apply the changes to the Terraform stack, the schedule will be triggered (every 5 minutes) and
 it will invoke the Lambda function to check whether the invoked time is one of the specified times on `app_fn_start_schedules` or `app_fn_stop_schedules`.
-If it is true, it will start or stop acition based on that current invoked time.
+If it is true, it will start or stop action based on that current invoked time.
 
 ---
 
