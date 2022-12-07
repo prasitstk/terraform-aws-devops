@@ -1,5 +1,5 @@
 const AWS = require('aws-sdk');
-AWS.config.update({region: 'ap-southeast-1'});
+AWS.config.update({region: process.env.AWS_REGION});
 const rds = new AWS.RDS({apiVersion: '2014-10-31'});
 
 exports.handler = async (event) => {

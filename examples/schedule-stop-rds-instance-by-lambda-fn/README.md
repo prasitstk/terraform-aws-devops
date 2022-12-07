@@ -48,7 +48,7 @@ Specify when to stop the running RDS database instance created from this Terrafo
 app_fn_schedule_expression = "cron(0 0 * * ? *)"
 ```
 
-From the setting above, after we apply the changes to the Terraform stack, the schedule will be triggered daily 00:00 and
+From the setting above, after we apply the changes to the Terraform stack, the schedule will be triggered daily 00:00 (UTC) and
 it will invoke the Lambda function to stop the database instance.
 
 ---

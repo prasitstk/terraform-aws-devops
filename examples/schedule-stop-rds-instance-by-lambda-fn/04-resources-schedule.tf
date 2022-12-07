@@ -16,7 +16,7 @@ resource "aws_cloudwatch_event_target" "sys_sched_rule_stop_rds_instance_fn_lamb
   rule      = aws_cloudwatch_event_rule.sys_sched_rule.id
 
   input = jsonencode({
-    DryRun = "${lower(var.app_fn_schedule_dry_run)}"
+    DryRun = "${tostring(var.app_fn_schedule_dry_run)}"
     DBIdentifier = "${aws_db_instance.tgt_data_dbi.identifier}"
   })
 }

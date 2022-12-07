@@ -1,5 +1,5 @@
 const AWS = require('aws-sdk');
-AWS.config.update({region: 'ap-southeast-1'});
+AWS.config.update({region: process.env.AWS_REGION});
 const ec2 = new AWS.EC2({ apiVersion: '2016-11-15' });
 
 exports.handler = async (event) => {
