@@ -14,6 +14,21 @@
 
 ## Tasks
 
+Create `terraform.tfvars` to define variables for Terraform as follows:
+
+```
+aws_region           = "<your-aws-region>"
+aws_access_key       = "<your-aws-access-key>"
+aws_secret_key       = "<your-aws-secret-key>"
+sys_name             = "devops"                 # Can be changed
+sys_vpc_cidr_block   = "10.0.0.0/16"            # Can be changed
+db_name              = "test_db"                # Can be changed
+master_db_user       = "test_db_user"           # Can be changed
+master_db_password   = "<master_db_password>"   # Can be generated manually by `pwgen 20 1` for example.
+bastion_host_az_name = "ap-southeast-1a"        # Can be changed
+bastion_host_ami_id  = "ami-0af2f764c580cc1f9"  # Can be changed
+```
+
 Initialize the project, plan, and apply the resource changes with the local state file by:
 ```sh
 terraform init
